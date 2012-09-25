@@ -60,8 +60,7 @@ public class MainActivity extends SherlockActivity {
 			protected Void doInBackground(Void... params) {
 				try
 		    	{
-//		    		UploadUtil.uploadVideo(is);
-					question.getLastQuestions();
+		    		UploadUtil.uploadVideo(is);
 		    	}catch(Exception e)
 		    	{
 		    		Log.e(TAG, "Error uploading video... " + e.toString());
