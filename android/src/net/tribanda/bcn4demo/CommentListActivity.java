@@ -125,7 +125,7 @@ public class CommentListActivity extends SherlockListActivity {
 		Uri uri = VideoUtil.videoIntentParce(data, requestCode);
 		final InputStream is = VideoUtil.getVideoStream(this, uri);
 		
-		if (requestCode == Constants.ACTION_TAKE_PICTURE) {
+		if (requestCode == Constants.ACTION_TAKE_VIDEO) {
 			AsyncTask<Void, Void, Void> t = new AsyncTask<Void, Void, Void>() {
 				@Override
 				protected void onPreExecute() {
