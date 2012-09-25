@@ -32,6 +32,25 @@ public class question {
 			return null;
 		}
 	}
+	
+	public String toJson() throws Exception
+	{
+		JSONObject jobj = new JSONObject();
+		jobj.put("videoId", this.videoUrl);
+		jobj.put("userId", 1);
+		jobj.put("title", "New question needs moderation");
+		return jobj.toString(4);
+	}
+	
+	public void createOnServer()
+	{
+		try{
+			HttpUtils.Post(Constants.QESTION_POST, this.toJson());
+		}catch(Exception e)
+		{
+			Log.d(TAG, "Error creating question on server...");
+		}
+	}
 
 
 	public static List<question> getTopQuestions()

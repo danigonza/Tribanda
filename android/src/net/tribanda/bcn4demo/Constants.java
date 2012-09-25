@@ -11,4 +11,5 @@ public class Constants {
 	public static final String LAST_QUESTIONS = SERVER_NAME + "/questions/last";
 	public static final String TOP_QUESTIONS = SERVER_NAME + "/questions/top";
 	public static final String QESTION_BY_ID= SERVER_NAME + "/questions/";
+	public static final String QESTION_POST = SERVER_NAME + "/questions";
 }
