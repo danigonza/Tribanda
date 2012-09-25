@@ -13,10 +13,10 @@ import net.tribanda.bcn4demo.net.HttpUtils;
 
 public class question {
 	private static final String TAG = "Question";
-	String videoUrl;
-	int votes;
-	String userName;
-	String title;
+	public String videoUrl;
+	public int votes;
+	public String userName;
+	public String title;
 	
 	List<answer> answers;
 	
