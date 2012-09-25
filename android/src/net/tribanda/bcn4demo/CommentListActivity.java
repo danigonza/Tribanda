@@ -79,18 +79,10 @@ public class CommentListActivity extends SherlockListActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// Returning form edition?  Must refresh!
 
-		if (requestCode == 1) {
+		if (requestCode == Constants.ACTION_TAKE_VIDEO) {
 
 			if(resultCode == RESULT_OK){
-
-				String name = data.getStringExtra("resultName");
-				int position = data.getIntExtra("listItemId",-1);
-
-				if (position != -1) {
-					adapter.remove(adapter.getItem(position));
-					adapter.insert(name, position);
-					adapter.notifyDataSetChanged();
-				}
+					
 			}
 		}
 	}
