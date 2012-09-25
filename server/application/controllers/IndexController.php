@@ -10,40 +10,9 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-    	$str='';
-    	try {
-    		// open connection to MongoDB server
-    		$conn = new Mongo('localhost');
+ 
+    	$this->getResponse()->appendBody('conect');   
     	
-    		// access database
-    		$db = $conn->test;
-    	
-    		// access collection
-    		$collection = $db->items;
-    	
-    		// execute query
-    		// retrieve all documents
-    		$cursor = $collection->find();
-    	
-    		// iterate through the result set
-    		// print each document
-    		$str .= $cursor->count() . ' document(s) found. <br/>';
-    		foreach ($cursor as $obj) {
-    			$str .= 'Name: ' . $obj['name'] . '<br/>';
-    			$str .= 'Quantity: ' . $obj['quantity'] . '<br/>';
-    			$str .= 'Price: ' . $obj['price'] . '<br/>';
-    			$str .= '<br/>';
-    		}
-    	
-    		// disconnect from server
-    		$conn->close();
-    	} catch (MongoConnectionException $e) {
-    		$str .='Error connecting to MongoDB server';
-    	} catch (MongoException $e) {
-    		$str .= 'Error: ' . $e->getMessage();
-    	}
-    	
-    	$this->getResponse()->appendBody(Zend_Json::encode($str));   
     }
     
     public function getAction()
