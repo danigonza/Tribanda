@@ -2,6 +2,7 @@ package net.tribanda.bcn4demo;
 
 import java.io.InputStream;
 
+import model.question;
 import net.tribanda.bcn4demo.net.UploadUtil;
 import net.tribanda.bcn4demo.video.VideoUtil;
 
@@ -59,7 +60,8 @@ public class MainActivity extends SherlockActivity {
 			protected Void doInBackground(Void... params) {
 				try
 		    	{
-		    		UploadUtil.uploadVideo(is);
+//		    		UploadUtil.uploadVideo(is);
+					question.getLastQuestions();
 		    	}catch(Exception e)
 		    	{
 		    		Log.e(TAG, "Error uploading video... " + e.toString());
