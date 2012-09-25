@@ -122,10 +122,12 @@ public class CommentListActivity extends SherlockListActivity {
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// Returning form edition?  Must refresh!
-		Uri uri = VideoUtil.videoIntentParce(data, requestCode);
-		final InputStream is = VideoUtil.getVideoStream(this, uri);
 		
 		if (requestCode == Constants.ACTION_TAKE_VIDEO) {
+			
+			Uri uri = VideoUtil.videoIntentParce(data, requestCode);
+			final InputStream is = VideoUtil.getVideoStream(this, uri);
+
 			AsyncTask<Void, Void, Void> t = new AsyncTask<Void, Void, Void>() {
 				@Override
 				protected void onPreExecute() {

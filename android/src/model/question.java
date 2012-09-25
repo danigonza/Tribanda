@@ -69,7 +69,7 @@ public class question {
 	{
 		try
 		{
-			String response = HttpUtils.Get(Constants.QESTION_BY_ID + "/" + id);
+			String response = HttpUtils.Get(Constants.QESTION_BY_ID + id);
 			JSONObject jobj = new JSONObject(response);
 			return parseQuestion(jobj);
 		}catch(Exception e){
