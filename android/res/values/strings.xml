@@ -4,5 +4,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">BCN 4 Democracy</string>
-
+    <string name="title_activity_detail">MainActivity</string>
+    <string name="vote_button">vote</string>
+    <string name="test_name">Resposta de John</string>
+    <string name="title_activity_comment_list">CommentListActivity</string>
+    <string name="add">crear pregunta</string>
+    
 </resources>
