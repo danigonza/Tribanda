@@ -2,6 +2,8 @@ package net.tribanda.bcn4demo;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuInflater;
+
+import android.content.Intent;
 import android.os.Bundle;
 
 public class MainActivity extends SherlockActivity {
@@ -12,6 +14,9 @@ public class MainActivity extends SherlockActivity {
         setContentView(R.layout.activity_main);
         
         getSupportActionBar().setTitle("Example!");
+        
+        Intent i = new Intent(MainActivity.this, DetailActivity.class);
+    	startActivity(i);    	
         
     }
     
