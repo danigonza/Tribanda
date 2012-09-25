@@ -1,5 +1,6 @@
 package net.tribanda.bcn4demo;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,10 +9,13 @@ import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.MenuInflater;
 
 import model.question;
+import net.tribanda.bcn4demo.net.UploadUtil;
 import net.tribanda.bcn4demo.video.VideoUtil;
 
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore.Video;
 import android.content.Intent;
 import android.util.Log;
 import android.view.MenuItem;
@@ -118,7 +122,9 @@ public class CommentListActivity extends SherlockListActivity {
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// Returning form edition?  Must refresh!
-
+		Uri uri = VideoUtil.videoIntentParce(data, requestCode);
+		final InputStream is = VideoUtil.getVideoStream(this, uri);
+		
 		if (requestCode == Constants.ACTION_TAKE_PICTURE) {
 			AsyncTask<Void, Void, Void> t = new AsyncTask<Void, Void, Void>() {
 				@Override
@@ -131,8 +137,10 @@ public class CommentListActivity extends SherlockListActivity {
 				protected Void doInBackground(Void... params) {
 					try
 					{
-						//			    		UploadUtil.uploadVideo(is);
-						question.getLastQuestions();
+						String path = UploadUtil.uploadVideo(is);
+						question q = new question();
+						q.videoUrl = path;
+						q.createOnServer();
 					}catch(Exception e)
 					{
 						Log.e(TAG, "Error uploading video... " + e.toString());
