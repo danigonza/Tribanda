@@ -27,7 +27,8 @@ import android.widget.Toast;
 public class CommentListActivity extends SherlockListActivity {
 
 	private static final String TAG = "MainActivity";
-
+	protected List<question> q = new ArrayList<question>();
+	
 	List<String> items= new ArrayList<String>();
 	String[] ids = new String[0];	
 	private ArrayAdapter<String> adapter;
@@ -65,7 +66,6 @@ public class CommentListActivity extends SherlockListActivity {
 			protected List<question> doInBackground(Void... params) {
 				try
 				{
-					List<question> q = new ArrayList<question>();
 					q = question.getTopQuestions();
 					return q;
 				}catch(Exception e)
@@ -111,10 +111,10 @@ public class CommentListActivity extends SherlockListActivity {
 	public void onListItemClick(ListView parent, View v,
 			int position, long id) {    	
 		Toast.makeText(this, "You want to view "+position, Toast.LENGTH_SHORT).show();
-
+		
 		Intent i = new Intent(CommentListActivity.this, DetailActivity.class);
 
-		i.putExtra("rowId", position); // TODO id aqui
+		i.putExtra("rowId", q.get(position).id); // TODO id aqui
 		i.putExtra("listItemId", position);
 
 		startActivityForResult(i, 1);
