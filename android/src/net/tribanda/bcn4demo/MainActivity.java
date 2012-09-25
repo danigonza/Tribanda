@@ -26,6 +26,9 @@ public class MainActivity extends SherlockActivity {
         
         getSupportActionBar().setTitle("Example!");
         
+        Intent i = new Intent(MainActivity.this, DetailActivity.class);
+    	startActivity(i);    	
+        
     }
     
     @Override
