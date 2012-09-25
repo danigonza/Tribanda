@@ -1,5 +1,8 @@
 package net.tribanda.bcn4demo;
 
+import java.io.InputStream;
+
+import net.tribanda.bcn4demo.net.UploadUtil;
 import net.tribanda.bcn4demo.video.VideoUtil;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -7,6 +10,7 @@ import com.actionbarsherlock.view.MenuInflater;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -39,7 +43,34 @@ public class MainActivity extends SherlockActivity {
     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    	VideoUtil.videoIntentParce(data, requestCode);
+    	Uri uri = VideoUtil.videoIntentParce(data, requestCode);
+    	final InputStream is = VideoUtil.getVideoStream(this, uri);
+    	AsyncTask<Void, Void, Void> t = new AsyncTask<Void, Void, Void>() {
+			@Override
+			protected void onPreExecute() {
+				// TODO Auto-generated method stub
+				super.onPreExecute();
+			}
+			
+			@Override
+			protected Void doInBackground(Void... params) {
+				try
+		    	{
+		    		UploadUtil.uploadVideo(is);
+		    	}catch(Exception e)
+		    	{
+		    		Log.e(TAG, "Error uploading video... " + e.toString());
+		    	}
+				return null;
+			}
+			
+			@Override
+			protected void onPostExecute(Void result) {
+				// TODO Auto-generated method stub
+				super.onPostExecute(result);
+			}
+		};
+    	t.execute();
     }
     
     
