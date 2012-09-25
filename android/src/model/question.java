@@ -31,32 +31,7 @@ public class question {
 			return null;
 		}
 	}
-	
-	private static List<question> parseListQuestions(String response) throws Exception {
-		LinkedList<question> questions = new LinkedList<question>();
-		JSONArray js = new JSONArray(response);
-		for(int i=0; i<js.length(); i++)
-		{
-			JSONObject jobj = js.getJSONObject(i);
-			questions.add( parseQuestion(jobj));
-		}
-		return questions;
-	}
 
-	private static question parseQuestion(JSONObject jobj) throws Exception {
-		int id = jobj.getInt("id");
-		String title = jobj.getString("title");
-		int nVots = jobj.getInt("numVotes");
-		String videoId = jobj.getString("videoId");
-		question q = new question();
-		q.userName = "UserName fixed";
-		q.votes = nVots;
-		q.videoUrl = videoId;
-		q.title = title;
-		return q;
-		
-				
-	}
 
 	public static List<question> getTopQuestions()
 	{
@@ -75,7 +50,8 @@ public class question {
 		try
 		{
 			String response = HttpUtils.Get(Constants.QESTION_BY_ID + "/" + id);
-			return parseListQuestions(response);
+			JSONObject jobj = new JSONObject(response);
+			return parseQuestion(jobj);
 		}catch(Exception e){
 			Log.e(TAG, "Error retrieving or download data..:");
 			return null;
@@ -108,18 +84,5 @@ public class question {
 				
 	}
 
-		
 	
-	public static question getQuestionById(long id)
-	{
-		try
-		{
-			String response = HttpUtils.Get(Constants.QESTION_BY_ID + "/" + id);
-			return null;
-		}catch(Exception e){
-			Log.e(TAG, "Error retrieving or download data..:");
-			return null;
-		}
-		
-	}
 }
